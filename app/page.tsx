@@ -23,7 +23,7 @@ export default function Home() {
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <img src="/radar.png" alt="Pitch Predictors radar gun" style={{ width: 36, height: 36, objectFit: "contain" }} />
-          <span style={{ fontWeight: 900, fontSize: 18, color: "#fff", letterSpacing: "-0.02em", fontFamily: "Georgia, Times New Roman, serif" }}>
+          <span style={{ fontWeight: 900, fontSize: 18, color: "#c4a882", letterSpacing: "-0.02em", fontFamily: "Georgia, Times New Roman, serif" }}>
             PITCH PREDICTORS
           </span>
         </div>
@@ -286,7 +286,7 @@ export default function Home() {
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <img src="/radar.png" alt="Pitch Predictors radar gun" style={{ width: 22, height: 22, objectFit: "contain" }} />
-          <span style={{ fontWeight: 800, color: "#fff", fontSize: 14 }}>PITCH PREDICTORS</span>
+          <span style={{ fontWeight: 800, color: "#c4a882", fontSize: 14 }}>PITCH PREDICTORS</span>
         </div>
         <div style={{ fontSize: 13, color: "#a0b0c0" }}>© 2025 Pitch Predictors LLC. All rights reserved.</div>
       </footer>
