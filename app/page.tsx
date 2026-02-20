@@ -1,65 +1,296 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main style={{
+      margin: 0,
+      padding: 0,
+      fontFamily: "'Georgia', 'Times New Roman', serif",
+      background: "#0f0f0f",
+      color: "#e8e8e0",
+      minHeight: "100vh",
+    }}>
+
+      {/* NAV */}
+      <nav style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "20px 40px",
+        borderBottom: "1px solid #c4a882",
+        background: "#0f0f0f",
+        position: "sticky",
+        top: 0,
+        zIndex: 100,
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <img src="/radar.png" alt="Pitch Predictors radar gun" style={{ width: 36, height: 36, objectFit: "contain" }} />
+          <span style={{ fontWeight: 900, fontSize: 18, color: "#fff", letterSpacing: "-0.02em", fontFamily: "Georgia, Times New Roman, serif" }}>
+            PITCH PREDICTORS
+          </span>
+        </div>
+        <a
+          href="#pricing"
+          style={{
+            background: "#c4a882",
+            color: "#0f0f0f",
+            fontWeight: 800,
+            padding: "10px 24px",
+            borderRadius: 6,
+            textDecoration: "none",
+            fontSize: 14,
+            letterSpacing: "0.05em",
+          }}
+        >
+          GET ACCESS
+        </a>
+      </nav>
+
+      {/* HERO */}
+      <section style={{
+        textAlign: "center",
+        padding: "100px 24px 80px",
+        background: "#0f0f0f",
+        position: "relative",
+        overflow: "hidden",
+      }}>
+        <div style={{
+          position: "absolute", top: "50%", left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 600, height: 600, borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(196,168,130,0.07) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }} />
+        <div style={{
+          display: "inline-block",
+          background: "rgba(196,168,130,0.1)",
+          border: "1px solid rgba(196,168,130,0.3)",
+          color: "#c4a882",
+          fontSize: 12,
+          fontWeight: 700,
+          letterSpacing: "0.2em",
+          textTransform: "uppercase",
+          padding: "6px 18px",
+          borderRadius: 100,
+          marginBottom: 28,
+        }}>
+          Live During MLB Season
+        </div>
+        <h1 style={{
+          fontSize: "clamp(36px, 6vw, 72px)",
+          fontWeight: 900,
+          color: "#fff",
+          margin: "0 0 20px",
+          lineHeight: 1.1,
+          letterSpacing: "-0.02em",
+        }}>
+          Real-Time Baseball<br />
+          <span style={{ color: "#c4a882" }}>Analysis. Live.</span>
+        </h1>
+        <p style={{
+          fontSize: 18,
+          color: "#8090a8",
+          maxWidth: 560,
+          margin: "0 auto 40px",
+          lineHeight: 1.7,
+        }}>
+          Pitch Predictors is a live show that breaks down MLB games in real time — pitch speeds, tendencies, and expert analysis delivered directly in our exclusive Discord community.
+        </p>
+        <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
+          <a
+            href="#pricing"
+            style={{
+              background: "#c4a882",
+              color: "#0f0f0f",
+              fontWeight: 800,
+              padding: "16px 36px",
+              borderRadius: 8,
+              textDecoration: "none",
+              fontSize: 16,
+              letterSpacing: "0.03em",
+            }}
+          >
+            Get Access — $100/Show
+          </a>
+          <a
+            href="#how-it-works"
+            style={{
+              background: "transparent",
+              color: "#e8e8e0",
+              fontWeight: 600,
+              padding: "16px 36px",
+              borderRadius: 8,
+              textDecoration: "none",
+              fontSize: 16,
+              border: "1px solid #c4a882",
+            }}
+          >
+            How It Works
+          </a>
+        </div>
+
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: 48,
+          marginTop: 72,
+          flexWrap: "wrap",
+        }}>
+          {[
+            { value: "LIVE", label: "Real-Time Analysis" },
+            { value: "MLB", label: "Season Coverage" },
+            { value: "DISCORD", label: "Exclusive Access" },
+          ].map((stat) => (
+            <div key={stat.label} style={{ textAlign: "center" }}>
+              <div style={{ fontSize: 28, fontWeight: 900, color: "#c4a882" }}>{stat.value}</div>
+              <div style={{ fontSize: 13, color: "#5a6a80", marginTop: 4, letterSpacing: "0.1em", textTransform: "uppercase" }}>{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* WHAT YOU GET */}
+      <section style={{ padding: "80px 24px", maxWidth: 900, margin: "0 auto" }}>
+        <h2 style={{ textAlign: "center", fontSize: 36, fontWeight: 900, color: "#fff", marginBottom: 12 }}>
+          What You Get
+        </h2>
+        <p style={{ textAlign: "center", color: "#8090a8", marginBottom: 56, fontSize: 16 }}>
+          
+        </p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 24 }}>
+          {[
+            { icon: "📡", title: "Live Pitch Speed Breakdowns", desc: "We track and analyze pitch speeds as they happen, giving you context and insight pitch by pitch." },
+            { icon: "🎙️", title: "Expert Live Commentary", desc: "Our hosts break down pitcher tendencies, matchups, and game situations in real time during every show." },
+            { icon: "⚾", title: "In-Depth Game Analysis", desc: "Go beyond the box score. We cover what the numbers mean and why each pitch matters in the moment." },
+            { icon: "🎮", title: "Exclusive Discord Access", desc: "Every ticket gets you into our private Discord channel where the show streams live." },
+          ].map((item) => (
+            <div key={item.title} style={{
+              background: "#0f0f0f",
+              border: "1px solid #c4a882",
+              borderRadius: 12,
+              padding: "28px 24px",
+            }}>
+              <div style={{ fontSize: 32, marginBottom: 14 }}>{item.icon}</div>
+              <div style={{ fontSize: 17, fontWeight: 800, color: "#fff", marginBottom: 10 }}>{item.title}</div>
+              <div style={{ fontSize: 14, color: "#6a7a90", lineHeight: 1.65 }}>{item.desc}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section id="how-it-works" style={{ padding: "80px 24px", background: "#0f0f0f" }}>
+        <div style={{ maxWidth: 700, margin: "0 auto", textAlign: "center" }}>
+          <h2 style={{ fontSize: 36, fontWeight: 900, color: "#fff", marginBottom: 12 }}>
+            How It Works
+          </h2>
+          <p style={{ color: "#8090a8", marginBottom: 56, fontSize: 16 }}>
+            Three simple steps to get you in the show.
           </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 20, textAlign: "left" }}>
+            {[
+              { step: "01", title: "Purchase Show Access", desc: "Buy a ticket to an upcoming live show for $100 through our secure Stripe checkout." },
+              { step: "02", title: "Connect Your Discord", desc: "After purchase, link your Discord account. We automatically grant you access to the exclusive show channel — no waiting, no manual approval." },
+              { step: "03", title: "Watch the Live Show", desc: "When the show goes live, join us in Discord for real-time pitch speed analysis and expert MLB commentary." },
+            ].map((item) => (
+              <div key={item.step} style={{
+                display: "flex",
+                gap: 20,
+                alignItems: "flex-start",
+                background: "#0f0f0f",
+                border: "1px solid #c4a882",
+                borderRadius: 12,
+                padding: "24px",
+              }}>
+                <div style={{
+                  width: 48, height: 48, borderRadius: "50%",
+                  background: "#c4a882", color: "#ffffff",
+                  fontWeight: 900, fontSize: 14,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  flexShrink: 0,
+                }}>
+                  {item.step}
+                </div>
+                <div>
+                  <div style={{ fontSize: 17, fontWeight: 800, color: "#fff", marginBottom: 8 }}>{item.title}</div>
+                  <div style={{ fontSize: 14, color: "#6a7a90", lineHeight: 1.65 }}>{item.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* PRICING */}
+      <section id="pricing" style={{ padding: "80px 24px", textAlign: "center" }}>
+        <h2 style={{ fontSize: 36, fontWeight: 900, color: "#fff", marginBottom: 12 }}>
+          Simple Pricing
+        </h2>
+        <p style={{ color: "#8090a8", marginBottom: 48, fontSize: 16 }}>
+          Pay per show. No subscriptions, no commitments.
+        </p>
+        <div style={{
+          display: "inline-block",
+          background: "#0f0f0f",
+          border: "2px solid #c4a882",
+          borderRadius: 16,
+          padding: "48px 56px",
+          maxWidth: 400,
+          width: "100%",
+          boxShadow: "0 0 60px rgba(196,168,130,0.08)",
+        }}>
+          <div style={{ fontSize: 13, color: "#c4a882", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16 }}>
+            Per Show Access
+          </div>
+          <div style={{ fontSize: 64, fontWeight: 900, color: "#fff", lineHeight: 1 }}>$100</div>
+          <div style={{ color: "#5a6a80", marginBottom: 4, marginTop: 8 }}>one-time per show</div><div style={{ color: "#6a7a90", fontSize: 11, marginBottom: 32, fontStyle: "italic" }}>Applicable taxes may apply at checkout</div>
+          <div style={{ textAlign: "left", marginBottom: 32 }}>
+            {[
+              "Full access to the live show",
+              "Automatic Discord channel access",
+              "Real-time pitch speed analysis",
+              "Expert MLB commentary",
+              "Exclusive member community",
+            ].map((feature) => (
+              <div key={feature} style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 12 }}>
+                <span style={{ color: "#c4a882", fontWeight: 900 }}>✓</span>
+                <span style={{ fontSize: 14, color: "#a0b0c0" }}>{feature}</span>
+              </div>
+            ))}
+          </div>
+          <button style={{
+            width: "100%",
+            background: "#c4a882",
+            color: "#0f0f0f",
+            fontWeight: 800,
+            padding: "16px",
+            borderRadius: 8,
+            border: "none",
+            fontSize: 16,
+            cursor: "pointer",
+            letterSpacing: "0.03em",
+          }}>
+            Buy Show Access
+          </button>
+          <p style={{ fontSize: 12, color: "#a0b0c0", marginTop: 16 }}>Secure checkout via Stripe</p>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer style={{
+        padding: "32px 40px",
+        borderTop: "1px solid #c4a882",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexWrap: "wrap",
+        gap: 12,
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <img src="/radar.png" alt="Pitch Predictors radar gun" style={{ width: 22, height: 22, objectFit: "contain" }} />
+          <span style={{ fontWeight: 800, color: "#fff", fontSize: 14 }}>PITCH PREDICTORS</span>
+        </div>
+        <div style={{ fontSize: 13, color: "#a0b0c0" }}>© 2025 Pitch Predictors LLC. All rights reserved.</div>
+      </footer>
+
+    </main>
   );
 }
