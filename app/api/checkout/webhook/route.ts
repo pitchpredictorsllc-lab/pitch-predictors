@@ -1,19 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { Client, GatewayIntentBits } from "discord.js";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
 async function grantDiscordRole(discordUserId: string) {
-  const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] });
-  
-  await client.login(process.env.DISCORD_BOT_TOKEN);
-  
-  const guild = await client.guilds.fetch(process.env.DISCORD_SERVER_ID as string);
-  const member = await guild.members.fetch(discordUserId);
-  await member.roles.add(process.env.DISCORD_ROLE_ID as string);
-  
-  await client.destroy();
+  const response = await fetch(
+    `https://discord.com/api/v10/guilds/${process.env.DISCORD_SERVER_ID}/members/${discordUserId}/roles/${process.env.DISCORD_ROLE_ID}`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: `Bot ${process.env.DISCORD_BOT_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Discord API error: ${response.status}`);
+  }
 }
 
 export async function POST(req: NextRequest) {
