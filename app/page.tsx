@@ -1,4 +1,16 @@
+"use client";
+
 export default function Home() {
+  const handleCheckout = async () => {
+    const res = await fetch("/api/checkout", { method: "POST" });
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
+  };
+
   return (
     <main style={{
       margin: 0,
@@ -21,11 +33,9 @@ export default function Home() {
         top: 0,
         zIndex: 100,
       }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <img src="/radar.png" alt="Pitch Predictors radar gun" style={{ width: 36, height: 36, objectFit: "contain" }} />
-          <span style={{ fontWeight: 900, fontSize: 18, color: "#c4a882", letterSpacing: "-0.02em", fontFamily: "Georgia, Times New Roman, serif" }}>
-            PITCH PREDICTORS
-          </span>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <img src="/radar.png" alt="Pitch Predictors" style={{ height: 52, width: "auto", objectFit: "contain" }} />
+          <span style={{ fontWeight: 900, fontSize: 18, color: "#c4a882", letterSpacing: "-0.02em", fontFamily: "Georgia, Times New Roman, serif" }}>PITCH PREDICTORS</span>
         </div>
         <a
           href="#pricing"
@@ -74,17 +84,20 @@ export default function Home() {
         }}>
           Live During MLB Season
         </div>
-        <h1 style={{
-          fontSize: "clamp(36px, 6vw, 72px)",
-          fontWeight: 900,
-          color: "#fff",
-          margin: "0 0 20px",
-          lineHeight: 1.1,
-          letterSpacing: "-0.02em",
-        }}>
-          Real-Time Baseball<br />
-          <span style={{ color: "#c4a882" }}>Analysis. Live.</span>
-        </h1>
+        <div style={{ position: "relative", marginBottom: 20 }}>
+          <h1 style={{
+            fontSize: "clamp(36px, 6vw, 72px)",
+            fontWeight: 900,
+            color: "#fff",
+            margin: "0 0 20px",
+            lineHeight: 1.1,
+            letterSpacing: "-0.02em",
+            textAlign: "center",
+          }}>
+            Real-Time Baseball<br />
+            <span style={{ color: "#c4a882" }}>Analysis. Live.</span>
+          </h1>
+        </div>
         <p style={{
           fontSize: 18,
           color: "#8090a8",
@@ -256,7 +269,9 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <button style={{
+          <button 
+          onClick={handleCheckout}
+          style={{
             width: "100%",
             background: "#c4a882",
             color: "#0f0f0f",
@@ -285,8 +300,7 @@ export default function Home() {
         gap: 12,
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <img src="/radar.png" alt="Pitch Predictors radar gun" style={{ width: 22, height: 22, objectFit: "contain" }} />
-          <span style={{ fontWeight: 800, color: "#c4a882", fontSize: 14 }}>PITCH PREDICTORS</span>
+          <img src="/radar.png" alt="Pitch Predictors" style={{ height: 40, width: "auto", objectFit: "contain" }} />
         </div>
         <div style={{ fontSize: 13, color: "#a0b0c0" }}>© 2025 Pitch Predictors LLC. All rights reserved.</div>
       </footer>
