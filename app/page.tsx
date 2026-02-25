@@ -1,7 +1,26 @@
 "use client";
-
+import {useState, useEffect} from "react";
 export default function Home() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/auth/me").then(res => {
+      if (res.ok) setIsLoggedIn(true);
+    });
+  }, []);
+
+  const handleSignOut = async () => {
+    await fetch("/api/auth/signout", { method: "POST" });
+    setIsLoggedIn(false);
+  };
+
   const handleCheckout = async () => {
+    // Check if logged in first
+    const authRes = await fetch("/api/auth/me");
+    if (!authRes.ok) {
+      window.location.href = "/signup";
+      return;
+    }
     const res = await fetch("/api/checkout", { method: "POST" });
     const data = await res.json();
     if (data.url) {
@@ -37,21 +56,19 @@ export default function Home() {
           <img src="/radar.png" alt="Pitch Predictors" style={{ height: 52, width: "auto", objectFit: "contain" }} />
           <span style={{ fontWeight: 900, fontSize: 18, color: "#c4a882", letterSpacing: "-0.02em", fontFamily: "Georgia, Times New Roman, serif" }}>PITCH PREDICTORS</span>
         </div>
-        <a
-          href="#pricing"
-          style={{
-            background: "#c4a882",
-            color: "#0f0f0f",
-            fontWeight: 800,
-            padding: "10px 24px",
-            borderRadius: 6,
-            textDecoration: "none",
-            fontSize: 14,
-            letterSpacing: "0.05em",
-          }}
-        >
-          GET ACCESS
-        </a>
+        <div style={{ display: "flex", gap: 10 }}>
+          {isLoggedIn ? (
+            <>
+              <a href="/dashboard" style={{ background: "none", border: "1px solid #c4a882", color: "#c4a882", fontWeight: 800, padding: "10px 18px", borderRadius: 6, textDecoration: "none", fontSize: 14 }}>Dashboard</a>
+              <button onClick={handleSignOut} style={{ background: "none", border: "1px solid #6a7a90", color: "#6a7a90", fontWeight: 700, padding: "10px 18px", borderRadius: 6, fontSize: 14, cursor: "pointer", fontFamily: "Georgia, serif" }}>Sign Out</button>
+            </>
+          ) : (
+            <>
+              <a href="/login" style={{ background: "none", border: "1px solid #c4a882", color: "#c4a882", fontWeight: 800, padding: "10px 18px", borderRadius: 6, textDecoration: "none", fontSize: 14 }}>Log In</a>
+              <a href="/signup" style={{ background: "#c4a882", color: "#000", fontWeight: 800, padding: "10px 18px", borderRadius: 6, textDecoration: "none", fontSize: 14 }}>Sign Up</a>
+            </>
+          )}
+        </div>
       </nav>
 
       {/* HERO */}
@@ -270,7 +287,7 @@ export default function Home() {
             ))}
           </div>
           <button 
-          onClick={handleCheckout}
+          onClick={handleCheckout} 
           style={{
             width: "100%",
             background: "#c4a882",
@@ -285,6 +302,7 @@ export default function Home() {
           }}>
             Buy Show Access
           </button>
+      
           <p style={{ fontSize: 12, color: "#a0b0c0", marginTop: 16 }}>Secure checkout via Stripe</p>
         </div>
       </section>
