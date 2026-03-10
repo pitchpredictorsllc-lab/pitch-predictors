@@ -17,6 +17,8 @@ model User {
   agreedToTerms     Boolean    @default(false)
   agreedToTermsAt   DateTime?
   createdAt         DateTime   @default(now())
+  emailVerified     Boolean    @default(false)
+  verificationToken String?
   purchases         Purchase[]
 }
 

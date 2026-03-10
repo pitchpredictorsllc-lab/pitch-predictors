@@ -45,7 +45,10 @@ export default function Signup() {
       setError(data.error || "Something went wrong.");
       return;
     }
-    router.push("/dashboard");
+    setError("");
+setForm({ name: "", email: "", password: "", confirmPassword: "", agreedToTerms: false });
+alert("Account created! Please check your email to verify your account before logging in.");
+router.push("/login");
   };
 
   return (

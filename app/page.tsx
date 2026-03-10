@@ -1,5 +1,5 @@
 "use client";
-import {useState, useEffect} from "react";
+import{useState, useEffect} from "react"
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -286,9 +286,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <button 
-          onClick={handleCheckout} 
-          style={{
+          <button onClick={handleCheckout} style={{
             width: "100%",
             background: "#c4a882",
             color: "#0f0f0f",
@@ -302,7 +300,6 @@ export default function Home() {
           }}>
             Buy Show Access
           </button>
-      
           <p style={{ fontSize: 12, color: "#a0b0c0", marginTop: 16 }}>Secure checkout via Stripe</p>
         </div>
       </section>
@@ -321,6 +318,7 @@ export default function Home() {
           <img src="/radar.png" alt="Pitch Predictors" style={{ height: 40, width: "auto", objectFit: "contain" }} />
         </div>
         <div style={{ fontSize: 13, color: "#a0b0c0" }}>© 2025 Pitch Predictors LLC. All rights reserved.</div>
+        <a href="/terms" style={{ fontSize: 13, color: "#a0b0c0", textDecoration: "underline" }}>Terms & Conditions</a>
       </footer>
 
     </main>
