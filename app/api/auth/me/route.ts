@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as { userId: string };
-    
+
     const user = await prisma.user.findUnique({
       where: { id: decoded.userId },
       select: {
@@ -21,15 +21,21 @@ export async function GET(req: NextRequest) {
         name: true,
         discordId: true,
         discordUsername: true,
+        emailVerified: true,
       }
     });
 
     if (!user) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
+      // User no longer exists — clear the cookie and log them out
+      const response = NextResponse.json({ error: "User not found" }, { status: 401 });
+      response.cookies.set("token", "", { maxAge: 0 });
+      return response;
     }
 
     return NextResponse.json({ user });
   } catch {
-    return NextResponse.json({ error: "Invalid token" }, { status: 401 });
+    const response = NextResponse.json({ error: "Invalid token" }, { status: 401 });
+    response.cookies.set("token", "", { maxAge: 0 });
+    return response;
   }
 }
