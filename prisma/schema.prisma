@@ -31,3 +31,12 @@ model Purchase {
   discordInviteUrl String?
   createdAt        DateTime @default(now())
 }
+
+model DiscordInvite {
+  id            String   @id @default(cuid())
+  discordUserId String   @unique
+  inviteCode    String   @unique
+  used          Boolean  @default(false)
+  createdAt     DateTime @default(now())
+}
+
