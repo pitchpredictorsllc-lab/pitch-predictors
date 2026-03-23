@@ -32,10 +32,18 @@ export default function Dashboard() {
   };
 
   const handleCheckout = async () => {
-    const res = await fetch("/api/checkout", { method: "POST" });
-    const data = await res.json();
-    if (data.url) window.location.href = data.url;
-  };
+  // Check if show is active
+  const settingsRes = await fetch("/api/admin/show-settings");
+  const settings = await settingsRes.json();
+  if (!settings.isActive) {
+    alert("No show is scheduled today. Check back soon!");
+    return;
+  }
+
+  const res = await fetch("/api/checkout", { method: "POST" });
+  const data = await res.json();
+  if (data.url) window.location.href = data.url;
+};
 
   return (
     <main style={{

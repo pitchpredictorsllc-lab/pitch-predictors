@@ -15,20 +15,29 @@ export default function Home() {
   };
 
   const handleCheckout = async () => {
-    // Check if logged in first
-    const authRes = await fetch("/api/auth/me");
-    if (!authRes.ok) {
-      window.location.href = "/signup";
-      return;
-    }
-    const res = await fetch("/api/checkout", { method: "POST" });
-    const data = await res.json();
-    if (data.url) {
-      window.location.href = data.url;
-    } else {
-      alert("Something went wrong. Please try again.");
-    }
-  };
+  // Check if logged in first
+  const authRes = await fetch("/api/auth/me");
+  if (!authRes.ok) {
+    window.location.href = "/signup";
+    return;
+  }
+
+  // Check if show is active
+  const settingsRes = await fetch("/api/admin/show-settings");
+  const settings = await settingsRes.json();
+  if (!settings.isActive) {
+    alert("No show is scheduled today. Check back soon!");
+    return;
+  }
+
+  const res = await fetch("/api/checkout", { method: "POST" });
+  const data = await res.json();
+  if (data.url) {
+    window.location.href = data.url;
+  } else {
+    alert("Something went wrong. Please try again.");
+  }
+};
 
   return (
     <main style={{

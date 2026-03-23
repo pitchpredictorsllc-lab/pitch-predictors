@@ -40,3 +40,8 @@ model DiscordInvite {
   createdAt     DateTime @default(now())
 }
 
+model ShowSettings {
+  id        String   @id @default(cuid())
+  isActive  Boolean  @default(false)
+  updatedAt DateTime @updatedAt
+}
