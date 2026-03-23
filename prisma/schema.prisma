@@ -19,6 +19,8 @@ model User {
   createdAt         DateTime   @default(now())
   emailVerified     Boolean    @default(false)
   verificationToken String?
+  passwordResetToken  String?
+  passwordResetExpiry DateTime?
   purchases         Purchase[]
 }
 

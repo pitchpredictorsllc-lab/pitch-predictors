@@ -66,6 +66,9 @@ export default function Login() {
           <p style={{ textAlign: "center", fontSize: 13, color: "#6a7a90", margin: 0 }}>
             Don&apos;t have an account? <a href="/signup" style={{ color: "#c4a882", fontWeight: 700 }}>Sign up</a>
           </p>
+          <p style={{ textAlign: "center", fontSize: 13, color: "#6a7a90", margin: "8px 0 0" }}>
+            <a href="/forgot-password" style={{ color: "#6a7a90", textDecoration: "underline" }}>Forgot your password?</a>
+          </p>
         </div>
       </div>
     </main>
