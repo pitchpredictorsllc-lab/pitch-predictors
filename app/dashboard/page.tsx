@@ -82,7 +82,7 @@ export default function Dashboard() {
           </h2>
           {discordLinked ? (
             <p style={{ color: "#8090a8", fontSize: 14, margin: 0 }}>
-              Your Discord account <strong style={{ color: "#fff" }}>{discordUsername}</strong> is connected. You&apos;ll automatically receive show access after purchase.
+              Your Discord account <strong style={{ color: "#fff" }}>{discordUsername}</strong> is connected. You&apos;ll automatically receive show access after purchase. If this is your first time joining the Discord, please check your email for a Discord invite link - please check your spam folder if you can not find it.
             </p>
           ) : (
             <>
